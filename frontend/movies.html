@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Select Movie - Magic Movie</title>
+  <style>
+    /* Reset and basics */
+    body, html {
+      margin: 0; padding: 0; height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+      background: #0d0d0d;
+      color: white;
+      position: relative;
+    }
+    /* Particles background container */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: linear-gradient(135deg, #141e30, #243b55);
+    }
+    h2 {
+      text-align: center;
+      margin: 30px 0 20px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+    /* Movie cards container */
+    .movies-container {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding-bottom: 40px;
+    }
+    /* Each movie card */
+    .movie-card {
+      background: rgba(255 255 255 / 0.05);
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(255 255 255 / 0.1);
+      width: 200px;
+      overflow: hidden;
+      cursor: pointer;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255 255 255 / 0.15);
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+    }
+    .movie-card:hover {
+      transform: scale(1.08);
+      box-shadow:
+        0 0 15px #e50914,
+        0 0 30px #e50914,
+        0 0 45px #e50914;
+      border-color: #e50914;
+      z-index: 10;
+    }
+    .movie-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-bottom: 1px solid rgba(255 255 255 / 0.1);
+      transition: transform 0.4s ease;
+    }
+    .movie-card:hover img {
+      transform: scale(1.1);
+    }
+    .movie-title {
+      margin: 15px 0 10px;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    select {
+      margin: 10px 0 15px;
+      padding: 8px 10px;
+      border-radius: 5px;
+      border: none;
+      font-size: 1rem;
+      outline: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    select:hover {
+      background: rgba(255 255 255 / 0.1);
+    }
+    button {
+      margin: 0 0 15px;
+      padding: 10px 0;
+      background: #e50914;
+      border: none;
+      border-radius: 6px;
+      font-weight: 700;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #b0060f;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="particles-js"></div>
+
+  <h2>Select a Movie</h2>
+
+  <div class="movies-container">
+    <div class="movie-card">
+      <img src="images/avatar.jpg" alt="Avatar" />
+      <div class="movie-title">Avatar</div>
+      <select id="avatar-time">
+        <option>10:00 AM</option>
+        <option>1:00 PM</option>
+        <option>6:00 PM</option>
+      </select>
+      <button onclick="selectMovie('Avatar', 'avatar-time')">Select</button>
+    </div>
+
+    <div class="movie-card">
+      <img src="images/inception.jpg" alt="Inception" />
+      <div class="movie-title">Inception</div>
+      <select id="inception-time">
+        <option>11:00 AM</option>
+        <option>2:00 PM</option>
+        <option>8:00 PM</option>
+      </select>
+      <button onclick="selectMovie('Inception', 'inception-time')">Select</button>
+    </div>
+
+    <div class="movie-card">
+      <img src="images/interstellar.jpg" alt="Interstellar" />
+      <div class="movie-title">Interstellar</div>
+      <select id="interstellar-time">
+        <option>9:00 AM</option>
+        <option>12:00 PM</option>
+        <option>7:00 PM</option>
+      </select>
+      <button onclick="selectMovie('Interstellar', 'interstellar-time')">Select</button>
+    </div>
+
+    <div class="movie-card">
+      <img src="images/joker.jpg" alt="Joker" />
+      <div class="movie-title">Joker</div>
+      <select id="joker-time">
+        <option>10:30 AM</option>
+        <option>3:00 PM</option>
+        <option>9:00 PM</option>
+      </select>
+      <button onclick="selectMovie('Joker', 'joker-time')">Select</button>
+    </div>
+
+    <div class="movie-card">
+      <img src="images/avengers.jpg" alt="Avengers: Endgame" />
+      <div class="movie-title">Avengers: Endgame</div>
+      <select id="avengers-time">
+        <option>1:00 PM</option>
+        <option>4:00 PM</option>
+        <option>10:00 PM</option>
+      </select>
+      <button onclick="selectMovie('Avengers: Endgame', 'avengers-time')">Select</button>
+    </div>
+
+    <div class="movie-card">
+      <img src="images/spiderman.jpg" alt="Spider-Man: No Way Home" />
+      <div class="movie-title">Spider-Man: No Way Home</div>
+      <select id="spiderman-time">
+        <option>12:00 PM</option>
+        <option>5:00 PM</option>
+        <option>8:30 PM</option>
+      </select>
+      <button onclick="selectMovie('Spider-Man: No Way Home', 'spiderman-time')">Select</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <script>
+    // Initialize particles background
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 80 },
+        color: { value: "#ffffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.4 },
+        size: { value: 3 },
+        move: { speed: 1.5 },
+        line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.1, width: 1 }
+      }
+    });
+
+    // Movie selection function
+    function selectMovie(movie, timeId) {
+      const showtime = document.getElementById(timeId).value;
+      localStorage.setItem('selectedMovie', movie);
+      localStorage.setItem('selectedTime', showtime);
+      window.location.href = 'seat-selection.html';
+    }
+  </script>
+</body>
+</html>
